@@ -1,0 +1,31 @@
+@import url("./fonts/fonts.css");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background-color: #FFFFFF;
+  --text-color: #333333;
+  
+}
+
+* {
+  font-family: "MTN Brighter Sans", sans-serif;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+
+/* styles-dark.css */
+/* :root {
+  --background-color: #1E1E1E;
+  --text-color: #FFFFFF;
+}
+ */
+/* styles-light.css */
+
+
+html.dark {
+  --background-color: #1E1E1E;
+  --text-color: #FFFFFF;
+}
