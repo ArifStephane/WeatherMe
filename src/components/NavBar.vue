@@ -6,7 +6,6 @@
         <p class="flex justify-end font-bold text-xl">{{ date }}</p>
       </div>
    
-      <!-- <VPanel></VPanel> -->
          <div class="px-2 font-bold  rounded-xl h-12 flex items-center" @click="toggleTheme()" :class="['bg-red-800 text-white']">
           {{ store.state.theme === 'dark' ? 'Light' : 'Dark' }} Mode
       </div>
@@ -21,7 +20,6 @@ import { useStore } from 'vuex'
 
 
 import { useDark, useToggle } from '@vueuse/core'
-import VPanel from '@/components/VPanel.vue'
 
 
 defineProps<{
