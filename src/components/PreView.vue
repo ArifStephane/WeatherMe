@@ -37,7 +37,7 @@
 <script setup lang="ts">
 defineProps<{
   country?: string,
-  wind?: string,
+  wind?: number,
   humidity?: string,
   visiblity?: string,
   pressure?: string

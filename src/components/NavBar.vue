@@ -6,16 +6,15 @@
         <p class="flex justify-end font-bold text-xl">{{ date }}</p>
       </div>
    
-         <div class="px-2 font-bold  rounded-xl h-12 flex items-center" @click="toggleTheme()" :class="['bg-red-800 text-white']">
+         <!-- <div class="px-2 font-bold  rounded-xl h-12 flex items-center" @click="toggleTheme()" :class="['bg-red-800 text-white']">
           {{ store.state.theme === 'dark' ? 'Light' : 'Dark' }} Mode
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import {  ref } from 'vue'
-import { useStore } from 'vuex'
 
 
 
@@ -27,19 +26,8 @@ defineProps<{
   date?: string
  
 }>();
-const store = useStore()
 
-const isDark = useDark()
-const toggleDark = useToggle(isDark)
-const toggleThem = () => {
-    const newTheme = store.state.theme === 'dark' ? 'light' : 'dark'
-    store.commit('setTheme', newTheme)
-  }
-
-function toggleTheme() {
- toggleThem();
-  toggleDark()
-}
+ 
 </script>
 
 <style scoped></style>

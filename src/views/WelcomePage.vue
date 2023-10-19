@@ -29,7 +29,7 @@
             "
           />
         </div>
-        <div class="flex justify-center px-10" v-if="location">
+        <div class="flex justify-center px-10" v-if="location && meteo">
           <PreView
             :country="meteo.name"
             :wind="meteo.wind.speed"
@@ -40,11 +40,11 @@
             :temp="meteo.main.temp"
           ></PreView>
         </div>
-        <div class="flex justify-between px-10 font-bold text-xl" v-if="location">
-          <span> temperature max = {{ meteo.main.temp_max }} </span>
-          <span> temperature min = {{ meteo.main.temp_min }} </span>
+        <div class="flex justify-between px-10 font-bold text-xl" v-if="location && meteo">
+          <span> temperature max = {{ meteo.main.temp_max }} °C</span>
+          <span> temperature min = {{ meteo.main.temp_min }} °C</span>
         </div>
-        <div class="marquee-rtl" v-if="location">
+        <div class="marquee-rtl" v-if="location && meteo">
           <div class="tracking-widest font-bold text-xl">
             {{meteo.weather[0].description}}
           </div>
@@ -59,8 +59,16 @@ import NavBar from '@/components/NavBar.vue'
 import PreView from '@/components/PreView.vue'
 import VIcon from '@/components/VIcon.vue'
 
+interface Meteo {
+  name: string;
+  timezone: number;
+  visibility: string;
+  wind :{speed : number}
+  main :{humidity : string, temp_max: number, temp_min: number, pressure:string, temp: string }
+  weather : [{description: string}]
+}
 
-const location = ref()
+const location = ref<string>('')
 const localisation = ref(false)
 const dat = ref('')
 const loading = ref(false)
@@ -68,7 +76,7 @@ const longitude = ref('')
 const latitude = ref('')
 const url_base = ref('https://api.openweathermap.org/data/2.5/')
 const api_key = ref('0635803a8093df53cc85447f0b5d5214')
-const meteo = ref([])
+const meteo = ref<Meteo | null>(null)
 const lax = ref('')
 const long = ref('')
 
@@ -110,12 +118,12 @@ const currentDate = (timezone: any) => {
   long.value = instant
 }
  
-const onSuccessFetch = (data: any) => {
-  loading.value = false
+const onSuccessFetch = (data: Meteo) => {
   meteo.value = data
+  loading.value = false
   location.value = meteo.value.name
   localisation.value = false
-  currentDate(data.timezone)
+  currentDate(meteo.value.timezone)
 }
 
 const onSubmit = (e: any) => {
