@@ -1,9 +1,9 @@
 <template>
-  <div class="bg-bg-primary text-text-primary">
+  <div class="bg-primary text-text-primary">
     <div class="flex justify-between items-center px-4">
       <div class="">
-        <VIcon name="Logo"></VIcon>
-        <p class="flex justify-end font-bold text-xl">{{ date }}</p>
+        <VIcon name="Logo" class=""></VIcon>
+        <p class="flex justify-end font-bold text--[18px]">{{ date }}</p>
       </div>
    
          <!-- <div class="px-2 font-bold  rounded-xl h-12 flex items-center" @click="toggleTheme()" :class="['bg-red-800 text-white']">
